@@ -1,7 +1,6 @@
 import { Component } from 'react';
-import { ErrorButton } from './components/Buttons/ErrorButton/ErrorButton';
-import { Form } from './components/Form/Form';
-import { ResultContainer } from './components/ResultContainer/ResultContainer';
+import { ErrorButton } from './components/ErrorButton/ErrorButton';
+import { Searching } from './components/Searching/Searching';
 import './App.scss';
 
 export class App extends Component {
@@ -9,8 +8,7 @@ export class App extends Component {
     return (
       <div className="app">
         <ErrorButton />
-        <Form />
-        <ResultContainer />
+        <Searching />
       </div>
     );
   }

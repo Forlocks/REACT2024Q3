@@ -1,8 +1,8 @@
 import { Component } from 'react';
-import '../Button.scss';
+import './ErrorButton.scss';
 
 export class ErrorButton extends Component {
   render() {
-    return <button className="button">error</button>;
+    return <button className="error-button">error</button>;
   }
 }
