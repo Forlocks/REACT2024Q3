@@ -1,15 +1,17 @@
 import { Component } from 'react';
-import { SearchingInput } from './components/SearchingInput/SearchingInput';
-import { ResultsContainer } from './components/ResultContainer/ResultsContainer';
+import { ErrorButton } from './components/Buttons/ErrorButton/ErrorButton';
+import { Form } from './components/Form/Form';
+import { ResultContainer } from './components/ResultContainer/ResultContainer';
 import './App.scss';
 
 export class App extends Component {
   render() {
     return (
-      <>
-        <SearchingInput />
-        <ResultsContainer />
-      </>
+      <div className="app">
+        <ErrorButton />
+        <Form />
+        <ResultContainer />
+      </div>
     );
   }
 }

@@ -3,6 +3,6 @@ import './SearchingInput.scss';
 
 export class SearchingInput extends Component {
   render() {
-    return <></>;
+    return <input className="input" placeholder="star wars"></input>;
   }
 }
