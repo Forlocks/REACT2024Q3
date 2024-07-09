@@ -1,5 +1,14 @@
 @import '../../variables.scss';
 
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .form {
   display: flex;
   justify-content: center;
@@ -67,6 +76,32 @@
   gap: 50px;
   flex-wrap: wrap;
   width: 1700px
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.loading{
+  display: block;
+  width: 300px;
+  height: 300px;
+  animation: rotate 1s linear infinite;
+}
+
+.no-results {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  color: #000000;
+  -webkit-text-stroke: 3px $yellow;
+  font-family: "Star wars", sans-serif;
+  font-size: 50px;
+  letter-spacing: 1px;
 }
 
 @media (max-width: 1750px) {
