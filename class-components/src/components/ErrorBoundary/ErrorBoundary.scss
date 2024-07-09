@@ -1,0 +1,16 @@
+@import '../../variables.scss';
+
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  color: #000000;
+  -webkit-text-stroke: 3px $yellow;
+  font-family: "Star wars", sans-serif;
+  font-size: 100px;
+  letter-spacing: 1px;
+  backdrop-filter: blur(10px);
+}
