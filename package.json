@@ -10,7 +10,7 @@
     "lint": "eslint \"src/**/*.{tsx,ts}\"",
     "lint:fix": "eslint \"src/**/*.{tsx,ts}\" --fix",
     "prettier": "prettier \"src/**/*.{tsx,ts}\" --check",
-    "prettier:format": "prettier \"src/**/*.{tsx,ts}\" --write",
+    "format:fix": "prettier \"src/**/*.{tsx,ts}\" --write",
     "prepare": "husky && echo npm run lint-staged > .husky/pre-commit",
     "lint-staged": "lint-staged"
   },
