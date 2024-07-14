@@ -1,23 +1,20 @@
-import { Component } from 'react';
-import { ErrorStatus } from '../ErrorBoundary/ErrorBoundary';
+import { useState } from 'react';
 import './ErrorButton.scss';
 
-export class ErrorButton extends Component {
-  state: ErrorStatus = { hasError: false };
+export const ErrorButton = () => {
+  const [errorStatus, setErrorStatus] = useState<boolean>(false);
 
-  handleClick = () => {
-    this.setState({ hasError: true });
+  const handleClick = () => {
+    setErrorStatus(true);
   };
 
-  render() {
-    if (this.state.hasError) {
-      throw new Error('Error triggered in ErrorButton');
-    }
-
-    return (
-      <button className="error-button" onClick={this.handleClick}>
-        error
-      </button>
-    );
+  if (errorStatus) {
+    throw new Error('Error triggered in ErrorButton');
   }
-}
+
+  return (
+    <button className="error-button" onClick={handleClick}>
+      error
+    </button>
+  );
+};
