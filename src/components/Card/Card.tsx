@@ -1,4 +1,4 @@
-import { Person } from '../Searching/Searching';
+import { Person } from '../../hooks/useSearch';
 import './Card.scss';
 
 export const Card: React.FC<Person> = ({

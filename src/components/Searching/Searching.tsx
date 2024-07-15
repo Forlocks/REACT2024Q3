@@ -2,6 +2,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { Card } from '../Card/Card';
 import './Searching.scss';
 import loadingImage from '../../assets/loading.png';
+import { useLastRequest } from '../../hooks/useLastRequest';
 
 export interface Person {
   name: string;
@@ -15,51 +16,41 @@ export const Searching = () => {
   const [textInput, setTextInput] = useState<string>('');
   const [searchingResults, setSearchingResults] = useState<Person[]>([]);
   const [loadingStatus, setLoadingStatus] = useState<boolean>(false);
-  const [initialRenderStatus, setInitialRenderStatus] =
-    useState<boolean>(false);
+  const [lastRequest, updateLastRequest] = useLastRequest();
 
   useEffect(() => {
-    const lastRequest = localStorage.getItem('ForlocksAPI') || '';
+    const fetchData = async (request: string) => {
+      setLoadingStatus(true);
+      const trimmedRequest = request.trim();
+      const url =
+        trimmedRequest === ''
+          ? 'https://swapi.dev/api/people/?page=1'
+          : `https://swapi.dev/api/people/?search=${trimmedRequest}`;
 
-    setTextInput(lastRequest);
-    setLoadingStatus(true);
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        setSearchingResults(data.results || []);
+      } catch (error) {
+        console.log(error);
+      }
 
-    setInitialRenderStatus(true);
-  }, []);
+      setLoadingStatus(false);
+    };
 
-  useEffect(() => {
-    if (initialRenderStatus && loadingStatus) {
-      handleSubmit();
+    if (lastRequest) {
+      setTextInput(lastRequest);
+      fetchData(lastRequest);
     }
-  }, [initialRenderStatus]);
+  }, [lastRequest]);
 
   const handleInputTextChange = (event: ChangeEvent<HTMLInputElement>) => {
     setTextInput(event.target.value);
   };
 
-  const handleSubmit = async (event?: FormEvent<HTMLFormElement>) => {
-    event?.preventDefault();
-    setLoadingStatus(true);
-    localStorage.setItem('ForlocksAPI', textInput);
-
-    let url: string;
-    const request: string = textInput.trim();
-
-    if (request === '') {
-      url = 'https://swapi.dev/api/people/?page=1';
-    } else {
-      url = 'https://swapi.dev/api/people/?page=1&search=';
-    }
-
-    try {
-      const response = await fetch(url + request);
-      const data = await response.json();
-      setSearchingResults(data.results);
-    } catch (error) {
-      console.log(error);
-    }
-
-    setLoadingStatus(false);
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    updateLastRequest(textInput);
   };
 
   let content;
@@ -67,7 +58,7 @@ export const Searching = () => {
   if (loadingStatus) {
     content = (
       <div className="loading-container">
-        <img className="loading" src={loadingImage} />
+        <img className="loading" src={loadingImage} alt="loading" />
       </div>
     );
   } else if (searchingResults.length > 0) {
@@ -93,7 +84,7 @@ export const Searching = () => {
           placeholder="luke skywalker"
           value={textInput}
           onChange={handleInputTextChange}
-        ></input>
+        />
         <button className="button" type="submit">
           search
         </button>
