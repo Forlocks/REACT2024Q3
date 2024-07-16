@@ -1,0 +1,129 @@
+@import '../../variables.scss';
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  width: 100%;
+  height: 50px;
+}
+
+.input {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 500px;
+  height: 50px;
+  padding-left: 8px;
+  border: 5px solid $yellow;
+  border-radius: 10px;
+  background-color: $black;
+  font-family: "Star wars", sans-serif;
+  font-size: 24px;
+  letter-spacing: 1px;
+  color: $yellow;
+  transition: border 0.3s ease;
+
+  &::placeholder {
+    font-family: "Star wars", sans-serif;
+    font-size: 24px;
+    color: rgba(255, 196, 0, 0.5);
+  }
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 50px;
+  border: 5px solid $yellow;
+  border-radius: 25px;
+  background-color: $black;
+  color: $yellow;
+  font-family: "Star wars", sans-serif;
+  font-size: 24px;
+  letter-spacing: 1px;
+  transition: color 0.5s ease, background-color 0.5s ease, border 0.5s ease;
+
+  &:hover {
+    cursor: pointer;
+    transition: color 0.5s ease, background-color 0.5s ease, border 0.5s ease;
+    color: $black;
+    background-color: $yellow;
+    border: 5px solid $black;
+  }
+}
+
+.result-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 50px;
+  flex-wrap: wrap;
+  width: 1700px
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.loading{
+  display: block;
+  width: 300px;
+  height: 300px;
+  animation: rotate 1s linear infinite;
+}
+
+.no-results {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  color: #000000;
+  -webkit-text-stroke: 3px $yellow;
+  font-family: "Star wars", sans-serif;
+  font-size: 50px;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 1750px) {
+  .result-container {
+    width: 1350px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .result-container {
+    width: 1000px;
+  }
+}
+
+@media (max-width: 1050px) {
+  .result-container {
+    width: 650px;
+  }
+}
+
+@media (max-width: 700px) {
+  .result-container {
+    width: 300px;
+  }
+}
