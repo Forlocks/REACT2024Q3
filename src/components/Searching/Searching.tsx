@@ -38,10 +38,8 @@ export const Searching = () => {
       setLoadingStatus(false);
     };
 
-    if (lastRequest) {
-      setTextInput(lastRequest);
-      fetchData(lastRequest);
-    }
+    setTextInput(lastRequest);
+    fetchData(lastRequest);
   }, [lastRequest]);
 
   const handleInputTextChange = (event: ChangeEvent<HTMLInputElement>) => {
